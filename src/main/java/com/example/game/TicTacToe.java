@@ -40,7 +40,7 @@ public class TicTacToe {
     Scanner scnr;
     private void checkForWin(){
         //Win happens when either +10 or +2
-        if(board[0][0] )
+
     }
     private void placepiece(){
         boolean placed = false;
