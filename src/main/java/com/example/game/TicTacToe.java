@@ -37,11 +37,56 @@ public class TicTacToe {
     int turn; //Tracks the specific turn, if odd, X's turn, else O
     int size; //Tracks the total size of the board, if == 9, and none of the win cond is met, it's a tie
     public boolean win;
+    public boolean tie;
     XO currPiece;
     Scanner scnr;
     private void checkForWin(){
-        //Win happens when either +10 or +2
+        // 00 01 02    // 6 straight lines and && 2 diagonals  //1 2 3
+        // 10 11 12                                            //4 5 6
+        // 20 21 22                                            //7 8 9
+        XO one = board[0][0];
+        XO two = board[0][1];
+        XO three = board[0][2];
+        XO four = board[1][0];
+        XO five = board[1][1];
+        XO six = board[1][2];
+        XO seven = board[2][0];
+        XO eight = board[2][1];
+        XO nine = board[2][2];
 
+        if(one != null && two  != null && three != null){
+            if(one.equals(two) && two.equals(three)){
+                win = true;
+            }
+        }else if(four != null && five  != null && six != null){
+            if(four.equals(five) && five.equals(six)){
+                win = true;
+            }
+        }else if(seven != null && eight  != null && nine != null){
+            if(seven.equals(eight) && eight.equals(nine)){
+                win = true;
+            }
+        }else if(one != null && four  != null && seven != null){
+            if(one.equals(four) && four.equals(seven)){
+                win = true;
+            }
+        }else if(two != null && five  != null && eight != null){
+            if(two.equals(five) && five.equals(eight)){
+                win = true;
+            }
+        }else if(three != null && six  != null && nine != null){
+            if(three.equals(six) && six.equals(nine)){
+                win = true;
+            }
+        }else if(one != null && five  != null && nine != null){
+            if(one.equals(five) && five.equals(nine)){
+                win = true;
+            }
+        }else if(three != null && five  != null && seven != null){
+            if(three.equals(five) && five.equals(seven)){
+                win = true;
+            }
+        }
     }
     private boolean IfEmpty(XO piece, int id1, int id2){
         if (piece == null) {
@@ -151,8 +196,9 @@ public class TicTacToe {
         turn = 1;
         size = 0;
         win = false;
+        tie = false;
         scnr = new Scanner(System.in);
-        while(!win){
+        while(!win || !tie){
             Turn();
         }
     }
