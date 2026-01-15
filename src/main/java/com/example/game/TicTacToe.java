@@ -1,12 +1,12 @@
 package com.example.game;
 
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
 class XO{
     @Override
     public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
         XO xo = (XO) o;
         return isX == xo.isX && isO == xo.isO;
     }
@@ -24,10 +24,22 @@ class XO{
         if(turn % 2 == 0){
             isX = true;
             isO = false;
+            System.out.println("X! and turn is " + turn);
         }
         else{
             isX = false;
             isO = true;
+            System.out.println("O! and turn is " + turn);
+        }
+    }
+
+    @Override
+    public String toString() {
+        if(isX){
+            return "X";
+        }
+        else{
+            return "O";
         }
     }
 }
@@ -35,7 +47,6 @@ class XO{
 public class TicTacToe {
     XO[][] board; //2D array of board
     int turn; //Tracks the specific turn, if odd, X's turn, else O
-    int size; //Tracks the total size of the board, if == 9, and none of the win cond is met, it's a tie
     public boolean win;
     public boolean tie;
     XO currPiece;
@@ -57,28 +68,35 @@ public class TicTacToe {
         if(one != null && two  != null && three != null){
             if(one.equals(two) && two.equals(three)){
                 win = true;
+                if(one.isX){
+                    System.out.println("X wins!");
+                }
+                else{
+                    System.out.println("O wins!");
+                }
             }
-        }else if(four != null && five  != null && six != null){
+        }if(four != null && five  != null && six != null){
             if(four.equals(five) && five.equals(six)){
                 win = true;
             }
-        }else if(seven != null && eight  != null && nine != null){
+        }if(seven != null && eight  != null && nine != null){
             if(seven.equals(eight) && eight.equals(nine)){
                 win = true;
             }
-        }else if(one != null && four  != null && seven != null){
+        }if(one != null && four  != null && seven != null){
             if(one.equals(four) && four.equals(seven)){
                 win = true;
             }
-        }else if(two != null && five  != null && eight != null){
+        }if(two != null && five  != null && eight != null){
             if(two.equals(five) && five.equals(eight)){
                 win = true;
             }
-        }else if(three != null && six  != null && nine != null){
+        } if(three != null && six  != null && nine != null){
             if(three.equals(six) && six.equals(nine)){
                 win = true;
             }
         }else if(one != null && five  != null && nine != null){
+            System.out.println("TRIGGER!");
             if(one.equals(five) && five.equals(nine)){
                 win = true;
             }
@@ -91,7 +109,6 @@ public class TicTacToe {
     private boolean IfEmpty(XO piece, int id1, int id2){
         if (piece == null) {
             board[id1][id2] = currPiece;
-            turn++;
             return true;
         }
         return false;
@@ -105,6 +122,7 @@ public class TicTacToe {
             case 1:
                 if (IfEmpty(board[0][0],0,0)) {
                     placed = true;
+                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
@@ -113,6 +131,7 @@ public class TicTacToe {
             case 2:
                 if (IfEmpty(board[0][1],0,1)) {
                     placed = true;
+                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
@@ -121,6 +140,7 @@ public class TicTacToe {
             case 3:
                 if (IfEmpty(board[0][2],0,2)) {
                     placed = true;
+                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
@@ -129,6 +149,7 @@ public class TicTacToe {
             case 4:
                 if (IfEmpty(board[1][0],1,0)) {
                     placed = true;
+                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
@@ -137,6 +158,7 @@ public class TicTacToe {
             case 5:
                 if (IfEmpty(board[1][1],1,1)) {
                     placed = true;
+                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
@@ -145,6 +167,7 @@ public class TicTacToe {
             case 6:
                 if (IfEmpty(board[1][2],1,2)) {
                     placed = true;
+                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
@@ -153,6 +176,7 @@ public class TicTacToe {
             case 7:
                 if (IfEmpty(board[2][0],2,0)) {
                     placed = true;
+                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
@@ -161,6 +185,7 @@ public class TicTacToe {
             case 8:
                 if (IfEmpty(board[2][1],2,1)) {
                     placed = true;
+                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
@@ -169,6 +194,7 @@ public class TicTacToe {
             case 9:
                 if (IfEmpty(board[2][2],2,2)) {
                     placed = true;
+                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
@@ -176,35 +202,47 @@ public class TicTacToe {
                 break;
         }
         }while(!placed);
+
+
     }
     private void Turn(){
-        if(turn % 2 != 0){
+        if(turn == 10){
+            System.out.println("ITS A TIE!!!");
+            tie = true;
+            return;
+        }
+        if(turn % 2 == 0){
             System.out.println("It is X's turn!");
         }
         else{
             System.out.println("It is O's turn!");
         }
         currPiece = new XO(turn);
-
         placepiece();
-
-
+    }
+    private void DisplayBoard(){
+        for (int i = 0; i < 3; i++) {
+            System.out.println(Arrays.toString(board[i]));
+        }
     }
     public TicTacToe(){
         board = new XO[3][3];
         //I want to start with X... Turn system...?
-        turn = 1;
-        size = 0;
+        turn = 0;
         win = false;
         tie = false;
         scnr = new Scanner(System.in);
-        while(!win || !tie){
+        while(!win && !tie){
+            DisplayBoard();
             Turn();
+            if(turn >=  3){
+                System.out.println("CHECKING FOR WIN!");
+                checkForWin();
+            }
         }
     }
 
     static void main(){
         TicTacToe game = new TicTacToe();
-        System.out.println(game.board);
     }
 }
