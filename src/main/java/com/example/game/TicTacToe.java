@@ -20,6 +20,7 @@ class XO{
     public boolean isO;
 
     public XO(int turn){
+        //Initializes at X or O's turn!
         if(turn % 2 == 0){
             isX = true;
             isO = false;
@@ -42,97 +43,87 @@ public class TicTacToe {
         //Win happens when either +10 or +2
 
     }
+    private boolean IfEmpty(XO piece, int id1, int id2){
+        if (piece == null) {
+            board[id1][id2] = currPiece;
+            turn++;
+            return true;
+        }
+        return false;
+    }
     private void placepiece(){
-        boolean placed = false;
+        boolean placed = false; //Forces user to place at valid spot!
         do{
             System.out.println("Please choose a place 1-9 to place your piece");
             int place = scnr.nextInt();
         switch(place) {
             case 1:
-                if (board[0][0] == null) {
-                    board[0][0] = currPiece;
+                if (IfEmpty(board[0][0],0,0)) {
                     placed = true;
-                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
                 }
                 break;
             case 2:
-                if (board[0][1] == null) {
-                    board[0][1] = currPiece;
+                if (IfEmpty(board[0][1],0,1)) {
                     placed = true;
-                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
                 }
                 break;
             case 3:
-                if (board[0][2] == null) {
-                    board[0][2] = currPiece;
+                if (IfEmpty(board[0][2],0,2)) {
                     placed = true;
-                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
                 }
                 break;
             case 4:
-                if (board[1][0] == null) {
-                    board[1][0] = currPiece;
+                if (IfEmpty(board[1][0],1,0)) {
                     placed = true;
-                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
                 }
                 break;
             case 5:
-                if (board[1][1] == null) {
-                    board[1][1] = currPiece;
+                if (IfEmpty(board[1][1],1,1)) {
                     placed = true;
-                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
                 }
                 break;
             case 6:
-                if (board[1][2] == null) {
-                    board[1][2] = currPiece;
+                if (IfEmpty(board[1][2],1,2)) {
                     placed = true;
-                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
                 }
                 break;
             case 7:
-                if (board[2][0] == null) {
-                    board[2][0] = currPiece;
+                if (IfEmpty(board[2][0],2,0)) {
                     placed = true;
-                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
                 }
                 break;
             case 8:
-                if (board[2][1] == null) {
-                    board[2][1] = currPiece;
+                if (IfEmpty(board[2][1],2,1)) {
                     placed = true;
-                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");
                 }
                 break;
             case 9:
-                if (board[2][2] == null) {
-                    board[2][2] = currPiece;
+                if (IfEmpty(board[2][2],2,2)) {
                     placed = true;
-                    turn++;
                 }
                 else{
                     System.out.println("SPACE IS ALREADY FULL!");

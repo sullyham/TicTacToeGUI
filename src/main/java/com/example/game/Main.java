@@ -7,8 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Main extends Application {
     static void main(String[] args) {
@@ -25,7 +27,7 @@ public class Main extends Application {
         return label;
     }
     public static Scene makeScene(Parent root, String css){
-        Scene scene = new Scene(root,800,800);
+        Scene scene = new Scene(root,600,600);
         scene.getStylesheets().add(css);
         return scene;
     }
@@ -62,9 +64,10 @@ public class Main extends Application {
         BorderPane pane = new BorderPane();
         Scene scene = makeScene(pane, "stylesheet.css");
         pane.setCenter(new LoginScreen().getLoginScreen());
-
+        stage.getIcons().add(new Image("instagram.png"));
         stage.setScene(scene);
         stage.setResizable(false);
+        //stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
 }
