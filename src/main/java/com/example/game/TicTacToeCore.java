@@ -8,7 +8,7 @@ public class TicTacToeCore {
     private char X = 'X';
     private char O = 'O';
     private char currPlayer;
-    private void checkWin(){
+    private void checkState(){
         //We got to check from left to right, and from up to down
         // so like [0][0] [0][1] [0][2] |||||| [1][0] [1][1] [1][2] |||||| [2][0] [2][1] [2][2]
         // so like [0][0] [1][0] [2][0] |||||| [0][1] [1][1] [2][1] |||||| [0][2] [1][2] [2][2]
@@ -16,11 +16,20 @@ public class TicTacToeCore {
         //so like [0][0] [1][1] [2][2] ||||||| [0][2] [1][1] [2][0]
 
         //Checks both diagonals
-        if(getElement(0,0) == getElement(1,1) && getElement(1,1) == getElement(2,2)){
+        if(isTie){
+            System.out.println("It's a tie!");
+            return;
+        }
+        if(isWin){
+            System.out.println(getPlayer() + " has won!");
+            return;
+        }
+        if(getElement(0,0) != '\u0000' && getElement(0,0) == getElement(1,1) && getElement(1,1) == getElement(2,2)){
+
             isWin = true;
             return;
         }
-        if(getElement(0,2) == getElement(1,1) && getElement(1,1) == getElement(2,0)){
+        if(getElement(0,2) != '\u0000' && getElement(0,2) == getElement(1,1) && getElement(1,1) == getElement(2,0)){
             isWin = true;
             return;
         }
@@ -29,13 +38,14 @@ public class TicTacToeCore {
             char first = getElement(i, 0);
             char second = getElement(i, 1);
             char third = getElement(i, 2);
+            char firstdown = getElement(0, i);
             char seconddown = getElement(1, i);
             char thirddown = getElement(2, i);
-            if(first == second && second == third){
+            if(first != '\u0000' && first == second && second == third){
                 isWin = true;
                 break;
             }
-            else if(first == seconddown && seconddown == thirddown){
+            else if(firstdown != '\u0000' && firstdown == seconddown && seconddown == thirddown){
                 isWin = true;
                 break;
             }
@@ -62,31 +72,40 @@ public class TicTacToeCore {
     }
     //Gets win state of the board
     public boolean getWin(){
-        return isWin;
-    }
-    public char getWinPlayer(){
-        if(getWin()){
-            return currPlayer;
+        if(isWin){
+            System.out.println(getPlayer()+ " has won!");
         }
-        throw new IllegalArgumentException("No winning player!");
+        return isWin;
     }
     //Gets TieState of the board
     public boolean isTie(){
-        return isTie;
+        return size == 9;
     }
     //Sets the element to the current player
     public void setElement(int row, int column){
         if(getWin()){
-            System.out.println(getWinPlayer() + " has already won!");
+            System.out.println(getPlayer() + " has already won!");
+        }
+        else if(isTie){
+            System.out.println("There is a tie!");
         }
        else if(board[row][column] == '\u0000'){
             board[row][column] = currPlayer;
-            size++;
-            checkWin();
+            checkState();
+            if(!isTie && !isWin) {
+                size++;
+                currPlayer = getPlayer();
+            }
         }
         else{
             throw new IllegalArgumentException("Space is currently full!!");
         }
+    }
+
+    static void main() {
+        TicTacToeCore game = new TicTacToeCore();
+
+
     }
 
 }
