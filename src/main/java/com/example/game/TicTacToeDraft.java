@@ -44,7 +44,7 @@ class XO{
     }
 }
 
-public class TicTacToe {
+public class TicTacToeDraft {
     XO[][] board; //2D array of board
     int turn; //Tracks the specific turn, if odd, X's turn, else O
     public boolean win;
@@ -225,7 +225,7 @@ public class TicTacToe {
             System.out.println(Arrays.toString(board[i]));
         }
     }
-    public TicTacToe(){
+    public TicTacToeDraft(){
         board = new XO[3][3];
         //I want to start with X... Turn system...?
         turn = 0;
@@ -243,6 +243,6 @@ public class TicTacToe {
     }
 
     static void main(){
-        TicTacToe game = new TicTacToe();
+        TicTacToeDraft game = new TicTacToeDraft();
     }
 }
