@@ -1,5 +1,7 @@
 package com.example.game;
 
+import java.util.Arrays;
+
 public class TicTacToeCore {
     private char[][] board; //The board for the game
     private boolean isWin; //Checks the game state for a win
@@ -8,6 +10,11 @@ public class TicTacToeCore {
     private char X = 'X';
     private char O = 'O';
     private char currPlayer;
+    public void PrintBoard(){
+        for(char[] arr: board){
+            System.out.println(Arrays.toString(arr));
+        }
+    }
     private void checkState(){
         //We got to check from left to right, and from up to down
         // so like [0][0] [0][1] [0][2] |||||| [1][0] [1][1] [1][2] |||||| [2][0] [2][1] [2][2]
@@ -60,7 +67,7 @@ public class TicTacToeCore {
         currPlayer = getPlayer();
     }
     //Gets current player based on turn number, even is X, odd is O.
-    private char getPlayer(){
+    public char getPlayer(){
         if(size % 2 == 0){
             return X;
         }

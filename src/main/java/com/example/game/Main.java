@@ -62,10 +62,12 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         BorderPane pane = new BorderPane();
+        GridPane pane2 = new TicTacToeConsole().returnPane();
         Scene scene = makeScene(pane, "stylesheet.css");
+        Scene game = makeScene(pane2, "stylesheet.css");
         pane.setCenter(new LoginScreen().getLoginScreen());
         stage.getIcons().add(new Image("instagram.png"));
-        stage.setScene(scene);
+        stage.setScene(game);
         stage.setResizable(false);
         //stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
