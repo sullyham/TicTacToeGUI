@@ -3,18 +3,18 @@
     -fx-border-color: greenyellow;
     -fx-border-width: 10;
 }
-.user-pass{
+.button{
+    -fx-border-color: greenyellow;
+    -fx-background-color: black;
+    -fx-text-fill:greenyellow;
     -fx-font-size: 20;
+}
+.button:disabled{
+    -fx-opacity: 1.0;
+}
+.label{
+    -fx-label-padding: 20;
+    -fx-text-alignment: center;
+    -fx-font-size: 15;
     -fx-text-fill: greenyellow;
-}
-.login-button{
-    -fx-background-color: lawngreen;
-}
-.success{
-    -fx-text-fill: limegreen;
-    -fx-font-size: 20;
-}
-.fail{
-    -fx-text-fill: red;
-    -fx-font-size: 20;
 }

@@ -9,22 +9,15 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TicTacToeConsole extends Main{
     TicTacToeCore game;
     GridPane pane;
-    VBox labelhold;
-    Label description;
-    Button button1;
-    Button button2;
-    Button button3;
-    Button button4;
-    Button button5;
-    Button button6;
-    Button button7;
-    Button button8;
-    Button button9;
+    Label labelhold;
+    List<Button> buttonList;
     private Button makeButton(String tag, int s1, int s2){Button button = new Button(tag); button.setMinSize(s1,s2); return button;}
     class ButtonAction implements EventHandler<ActionEvent>{
         int pos1;
@@ -41,57 +34,38 @@ public class TicTacToeConsole extends Main{
             game.setElement(pos1,pos2);
             button.setDisable(true);
             if(game.getWin() || game.isTie()){
-                button1.setDisable(true);
-                button2.setDisable(true);
-                button3.setDisable(true);
-                button4.setDisable(true);
-                button5.setDisable(true);
-                button6.setDisable(true);
-                button7.setDisable(true);
-                button8.setDisable(true);
-                button9.setDisable(true);
+                labelhold.setText(game.getPlayer() + " has won!");
+                for(Button button: buttonList){
+                    button.setDisable(true);
+                }
             }
         }
     }
     public TicTacToeConsole() {
+        buttonList = new ArrayList<>();
+        for (int i = 0; i < 9; i++) {
+            buttonList.add(makeButton("",90,90));
+        }
         game = new TicTacToeCore();
         this.pane = new GridPane();
-        this.labelhold = new VBox();
-        labelhold.set
+        this.labelhold = new Label();
         pane.setAlignment(Pos.CENTER);
         pane.setPadding(new Insets(90,90,90,90));
-         button1 = makeButton("",90,90);
-         button2 = makeButton("",90,90);
-         button3 = makeButton("",90,90);
-         button4 = makeButton("",90,90);
-         button5 = makeButton("",90,90);
-         button6 = makeButton("",90,90);
-         button7 = makeButton("",90,90);
-         button8 = makeButton("",90,90);
-         button9 = makeButton("",90,90);
-        pane.add(button1,0,0);
-        pane.add(button2,0,1);
-        pane.add(button3,0,2);
-        pane.add(button4,1,0);
-        pane.add(button5,1,1);
-        pane.add(button6,1,2);
-        pane.add(button7,2,0);
-        pane.add(button8,2,1);
-        pane.add(button9,2,2);
-        button1.setOnAction(new ButtonAction(button1,0,0));
-        button2.setOnAction(new ButtonAction(button2,0,1));
-        button3.setOnAction(new ButtonAction(button3,0,2));
-        button4.setOnAction(new ButtonAction(button4,1,0));
-        button5.setOnAction(new ButtonAction(button5,1,1));
-        button6.setOnAction(new ButtonAction(button6,1,2));
-        button7.setOnAction(new ButtonAction(button7,2,0));
-        button8.setOnAction(new ButtonAction(button8,2,1));
-        button9.setOnAction(new ButtonAction(button9,2,2));
+        labelhold = new Label("");
+         for(int i = 0; i < 9; i+=3){
+             int row = (i/3);
+             buttonList.get(i).setOnAction(new ButtonAction(buttonList.get(i),row, 0));
+             buttonList.get(i+1).setOnAction(new ButtonAction(buttonList.get(i+1),row, 1));
+             buttonList.get(i+2).setOnAction(new ButtonAction(buttonList.get(i+2),row, 2));
+             pane.add(buttonList.get(i),row,0);
+             pane.add(buttonList.get(i+1),row,1);
+             pane.add(buttonList.get(i+2),row,2);
+         }
+         pane.add(labelhold, 1,0);
     }
     public GridPane returnPane(){
         return pane;
     }
-    public VBox returnBox(){}
 
     static void main() {
         TicTacToeConsole game = new TicTacToeConsole();
