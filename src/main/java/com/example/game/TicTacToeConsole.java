@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class TicTacToeConsole extends Main{
+public class TicTacToeConsole{
     TicTacToeCore game;
     GridPane pane;
-    Label labelhold;
+    //Label labelhold;
     List<Button> buttonList;
     private Button makeButton(String tag, int s1, int s2){Button button = new Button(tag); button.setMinSize(s1,s2); return button;}
     class ButtonAction implements EventHandler<ActionEvent>{
@@ -34,7 +34,8 @@ public class TicTacToeConsole extends Main{
             game.setElement(pos1,pos2);
             button.setDisable(true);
             if(game.getWin() || game.isTie()){
-                labelhold.setText(game.getPlayer() + " has won!");
+                //wincond.setText(game.getPlayer() + " has won!"); TODO modify this after refactoring
+                System.out.println(game.getPlayer() + " has won! inside tictactoeconsole.java");
                 for(Button button: buttonList){
                     button.setDisable(true);
                 }
@@ -47,11 +48,12 @@ public class TicTacToeConsole extends Main{
             buttonList.add(makeButton("",90,90));
         }
         game = new TicTacToeCore();
+        //wincond = new Label(); TODO modify this after refactoring
         this.pane = new GridPane();
-        this.labelhold = new Label();
+        //this.labelhold = new Label();
         pane.setAlignment(Pos.CENTER);
         pane.setPadding(new Insets(90,90,90,90));
-        labelhold = new Label("");
+        //labelhold = new Label("");
          for(int i = 0; i < 9; i+=3){
              int row = (i/3);
              buttonList.get(i).setOnAction(new ButtonAction(buttonList.get(i),row, 0));
@@ -61,13 +63,9 @@ public class TicTacToeConsole extends Main{
              pane.add(buttonList.get(i+1),row,1);
              pane.add(buttonList.get(i+2),row,2);
          }
-         pane.add(labelhold, 1,0);
     }
     public GridPane returnPane(){
         return pane;
     }
-
-    static void main() {
-        TicTacToeConsole game = new TicTacToeConsole();
-    }
+    //public Label returnLabel(){return labelhold;}
 }

@@ -13,59 +13,22 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
+    Label wincond;
     static void main(String[] args) {
         launch(args);
     }
-
-    public static Label makeLabel(String content, String ID){
-        Label label = new Label(content);
-        label.setMinWidth(120);
-        label.setPrefWidth(120);
-        label.setMaxWidth(120);
-        label.setAlignment(Pos.CENTER);
-        label.getStyleClass().add(ID);
-        return label;
-    }
-    public static Scene makeScene(Parent root, String css){
-        Scene scene = new Scene(root,600,600);
-        scene.getStylesheets().add(css);
-        return scene;
-    }
-    public static HBox makeHBox(Node one, Node two){
-        HBox box = new HBox(one, two);
-        box.setAlignment(Pos.CENTER);
-        return box;
-    }
-    public static VBox makeVBox(Node one, Node two, int gap){
-        VBox box = new VBox(one, two);
-        box.setSpacing(gap);
-        box.setAlignment(Pos.CENTER);
-        return box;
-    }
-    public static TextField makeTextField(String ID){
-        TextField field = new TextField();
-        field.setMaxWidth(120);
-        field.getStyleClass().add(ID);
-        return field;
-    }
-    public static PasswordField makePassField(String ID){
-        PasswordField field = new PasswordField();
-        field.setMaxWidth(120);
-        field.getStyleClass().add(ID);
-        return field;
-    }
-    public static Button makeButton(String text, String ID){
-        Button button = new Button(text);
-        button.getStyleClass().add(ID);
-        return button;
-    }
     @Override
     public void start(Stage stage) throws Exception {
+        //The top that shows who wins!
+        //Calling my game class
+        TicTacToeConsole gamer = new TicTacToeConsole();
+        //Borderpane to put grid in center, and win condition at the top?
         BorderPane pane = new BorderPane();
-        GridPane pane2 = new TicTacToeConsole().returnPane();
-        Scene scene = makeScene(pane, "stylesheet.css");
-        Scene game = makeScene(pane2, "stylesheet.css");
-        pane.setCenter(new LoginScreen().getLoginScreen());
+        //This is the gridpane which represents the tictactoe board!
+        GridPane pane2 = gamer.returnPane();
+        Scene game = MakeTools.makeScene(pane, "stylesheet.css");
+        pane.setCenter(pane2);
+        pane.setTop(wincond);
         stage.getIcons().add(new Image("instagram.png"));
         stage.setScene(game);
         stage.setResizable(false);

@@ -15,6 +15,6 @@
 .label{
     -fx-label-padding: 20;
     -fx-text-alignment: center;
-    -fx-font-size: 15;
+    -fx-font-size: 40;
     -fx-text-fill: greenyellow;
 }
