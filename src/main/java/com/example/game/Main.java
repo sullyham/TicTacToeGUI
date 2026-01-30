@@ -29,7 +29,7 @@ public class Main extends Application {
         GridPane pane2 = gamer.returnPane();
         Scene game = MakeTools.makeScene(pane, "stylesheet.css");
         pane.setCenter(pane2);
-        pane.setTop(wincond);
+        pane.setTop(gamer.returnLabel());
         stage.getIcons().add(new Image("instagram.png"));
         stage.setScene(game);
         stage.setResizable(false);

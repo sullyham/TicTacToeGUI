@@ -16,8 +16,8 @@ import java.util.Scanner;
 public class TicTacToeConsole{
     TicTacToeCore game;
     GridPane pane;
-    //Label labelhold;
     List<Button> buttonList;
+    Label WIN;
     private Button makeButton(String tag, int s1, int s2){Button button = new Button(tag); button.setMinSize(s1,s2); return button;}
     class ButtonAction implements EventHandler<ActionEvent>{
         int pos1;
@@ -34,8 +34,12 @@ public class TicTacToeConsole{
             game.setElement(pos1,pos2);
             button.setDisable(true);
             if(game.getWin() || game.isTie()){
-                //wincond.setText(game.getPlayer() + " has won!"); TODO modify this after refactoring
-                System.out.println(game.getPlayer() + " has won! inside tictactoeconsole.java");
+                if(game.isTie()){
+                    WIN.setText("\t\tIt's a tie!");
+                }
+                else{
+                    WIN.setText("\t\t" + game.getPlayer() + " has won the game!");
+                }
                 for(Button button: buttonList){
                     button.setDisable(true);
                 }
@@ -44,16 +48,17 @@ public class TicTacToeConsole{
     }
     public TicTacToeConsole() {
         buttonList = new ArrayList<>();
+        WIN = new Label("");
+        WIN.setMinWidth(550);
+        WIN.setMinHeight(80);
+        WIN.setMaxHeight(80);
         for (int i = 0; i < 9; i++) {
             buttonList.add(makeButton("",90,90));
         }
         game = new TicTacToeCore();
-        //wincond = new Label(); TODO modify this after refactoring
         this.pane = new GridPane();
-        //this.labelhold = new Label();
         pane.setAlignment(Pos.CENTER);
         pane.setPadding(new Insets(90,90,90,90));
-        //labelhold = new Label("");
          for(int i = 0; i < 9; i+=3){
              int row = (i/3);
              buttonList.get(i).setOnAction(new ButtonAction(buttonList.get(i),row, 0));
@@ -67,5 +72,5 @@ public class TicTacToeConsole{
     public GridPane returnPane(){
         return pane;
     }
-    //public Label returnLabel(){return labelhold;}
+    public Label returnLabel(){return WIN;}
 }
