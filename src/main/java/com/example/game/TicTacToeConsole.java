@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TicTacToeConsole{
-    AudioClip introsound = new AudioClip("https://sullyham.github.io/game-audio/GameStart.mp3");
+    AudioClip introsound = new AudioClip("https://sullyham.github.io/game-audio/Audio/GameStart.mp3");
     TicTacToeCore game;
     GridPane pane;
     List<Button> buttonList;
