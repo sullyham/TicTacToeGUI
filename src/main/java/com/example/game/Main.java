@@ -17,6 +17,7 @@ public class Main extends Application {
     static void main(String[] args) {
         launch(args);
     }
+    //DAMN
     @Override
     public void start(Stage stage) throws Exception {
         //The top that shows who wins!
