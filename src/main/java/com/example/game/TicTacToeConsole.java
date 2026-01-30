@@ -8,12 +8,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.media.AudioClip;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class TicTacToeConsole{
+    AudioClip introsound = new AudioClip("https://sullyham.github.io/game-audio/GameStart.mp3");
     TicTacToeCore game;
     GridPane pane;
     List<Button> buttonList;
@@ -47,6 +49,7 @@ public class TicTacToeConsole{
         }
     }
     public TicTacToeConsole() {
+        introsound.play();
         buttonList = new ArrayList<>();
         WIN = new Label("");
         WIN.setMinWidth(550);
