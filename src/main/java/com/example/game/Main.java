@@ -24,16 +24,22 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         //The top that shows who wins!
         //Calling my game class
-        TicTacToeConsole gamer = new TicTacToeConsole();
-        //Borderpane to put grid in center, and win condition at the top?
-        BorderPane pane = new BorderPane();
-        //This is the gridpane which represents the tictactoe board!
-        GridPane pane2 = gamer.returnPane();
-        Scene game = MakeTools.makeScene(pane, "stylesheet.css");
-        pane.setCenter(pane2);
-        pane.setTop(gamer.returnLabel());
+
+//        TicTacToeConsole gamer = new TicTacToeConsole();
+//        BorderPane pane = new BorderPane();
+//        GridPane pane2 = gamer.returnPane();
+//        Scene game = MakeTools.makeScene(pane, "stylesheet.css");
+//        pane.setCenter(pane2); //TicTacToe Board
+//        pane.setTop(gamer.returnLabel()); //Win Condition
+
+        PlayScreen screen = new PlayScreen();
+        BorderPane playboard = new BorderPane();
+        VBox buttons = screen.returnPlayScreen();
+        Scene playscreen = MakeTools.makeScene(playboard, "stylesheet.css");
+        playboard.setCenter(buttons);
+        buttons.setAlignment(Pos.CENTER);
         stage.getIcons().add(new Image("instagram.png"));
-        stage.setScene(game);
+        stage.setScene(playscreen);
         stage.setResizable(false);
         //stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
