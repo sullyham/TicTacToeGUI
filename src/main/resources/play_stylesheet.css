@@ -1,0 +1,23 @@
+.root{
+    -fx-background-color: black;
+    -fx-border-color: greenyellow;
+    -fx-border-width: 10;
+}
+.button{
+    -fx-border-color: greenyellow;
+    -fx-background-color: black;
+    -fx-text-fill:greenyellow;
+    -fx-font-size: 20;
+}
+.button:hover{
+    -fx-border-color: #9effd2
+}
+.button:disabled{
+    -fx-opacity: 1.0;
+}
+.label{
+    -fx-label-padding: 20;
+    -fx-text-alignment: center;
+    -fx-font-size: 30;
+    -fx-text-fill: greenyellow;
+}
