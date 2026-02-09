@@ -17,6 +17,7 @@ import javafx.stage.StageStyle;
 
 public class Main extends Application {
     static MediaPlayer mediaPlayer;
+    static PlayScreen screen;
     static void main(String[] args) {
         launch(args);
     }
@@ -44,7 +45,7 @@ public class Main extends Application {
         mediaPlayer = new MediaPlayer(m);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
-        PlayScreen screen = new PlayScreen();
+        screen = new PlayScreen();
         BorderPane playboard = new BorderPane();
         VBox buttons = screen.returnPlayScreen();
         Scene playscreen = MakeTools.makeScene(playboard, "play_stylesheet.css");
