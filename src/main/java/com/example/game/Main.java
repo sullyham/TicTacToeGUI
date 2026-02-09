@@ -10,11 +10,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
-
+    static MediaPlayer mediaPlayer;
     static void main(String[] args) {
         launch(args);
     }
@@ -28,10 +30,20 @@ public class Main extends Application {
         pane.setTop(gamer.returnLabel()); //Win Condition
         stage.setScene(game);
     }
+    public static void stopmusic(Stage stage){
+        mediaPlayer.stop();
+    }
+    public static void swapMulti(Stage stage){
+
+    }
     @Override
     public void start(Stage stage) throws Exception {
         //The top that shows who wins!
         //Calling my game class
+        Media m = new Media("https://sullyham.github.io/game-audio/Audio/MenuMusic.mp3");
+        mediaPlayer = new MediaPlayer(m);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
         PlayScreen screen = new PlayScreen();
         BorderPane playboard = new BorderPane();
         VBox buttons = screen.returnPlayScreen();
