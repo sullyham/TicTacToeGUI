@@ -17,19 +17,41 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.awt.*;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 public class PlayScreen {
     private VBox Play;
     String url = "https://www.clipartmax.com/png/middle/394-3947205_transparent-meteor-pixel-transparent-meteor-pixel.png";
     static class Multi{
         private VBox screen;
-        public Multi(){
+        private VBox hostscreen;
+        private VBox joinscreen;
+        public Multi() throws UnknownHostException {
             screen = new VBox();
             screen.setSpacing(30);
             Button Host = new Button("Host");
+            Host.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    Node source = (Node) actionEvent.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    BorderPane pane = new BorderPane();
+                    pane.setCenter(hostscreen);
+                    hostscreen.setAlignment(Pos.CENTER);
+                    Scene scene = MakeTools.makeScene(pane, "play_stylesheet.css");
+                    stage.setScene(scene);
+                }
+            });
             Host.setMinWidth(150);
             Button join = new Button("Join");
             join.setMinWidth(150);
             screen.getChildren().addAll(Host,join);
+            hostscreen = new VBox();
+            Label host = new Label("Hosting on " + InetAddress.getLocalHost().getHostAddress() + ":9999");
+            Label description = new Label("Waiting for players..");
+            hostscreen.getChildren().addAll(host, description);
         }
         public VBox getScreen(){
             return screen;
@@ -66,7 +88,12 @@ public class PlayScreen {
                 Node source = (Node) actionEvent.getSource();
                 Stage stage = (Stage) source.getScene().getWindow();
                 BorderPane pane = new BorderPane();
-                VBox buttons = new Multi().screen;
+                VBox buttons = null;
+                try {
+                    buttons = new Multi().screen;
+                } catch (UnknownHostException e) {
+                    throw new RuntimeException(e);
+                }
                 buttons.setAlignment(Pos.CENTER);
                 pane.setCenter(buttons);
                 Scene scene = MakeTools.makeScene(pane, "play_stylesheet.css");
