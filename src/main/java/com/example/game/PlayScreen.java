@@ -21,6 +21,7 @@ import java.awt.*;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+// I NEED TO CLEAN THIS FUCKING CODE LOL
 public class PlayScreen {
     private VBox Play;
     String url = "https://www.clipartmax.com/png/middle/394-3947205_transparent-meteor-pixel-transparent-meteor-pixel.png";
@@ -59,15 +60,6 @@ public class PlayScreen {
     }
     public PlayScreen(){
         Play = new VBox();
-        Image image = new Image("arrow.png");
-        ImageView imageView = new ImageView(image);
-        imageView.setFitWidth(100);
-        imageView.setFitHeight(100);
-        RotateTransition animation = new RotateTransition(Duration.seconds(4),imageView);
-        animation.setFromAngle(0);
-        animation.setToAngle(360);
-        animation.setInterpolator(Interpolator.LINEAR);
-        animation.play();
         Label title = new Label("TIC-TAC-TOE");
         Play.setSpacing(30);
         Button playlocal = new Button("Local Game");
