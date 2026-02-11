@@ -14,14 +14,13 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-//PRACTICING MERGING
+//REFACTOR BRANCH
 public class Main extends Application {
     static MediaPlayer mediaPlayer;
     static PlayScreen screen;
     static void main(String[] args) {
         launch(args);
     }
-    //DAMN
     public static void swapLocal(Stage stage){
         TicTacToeConsole gamer = new TicTacToeConsole();
         BorderPane pane = new BorderPane();
