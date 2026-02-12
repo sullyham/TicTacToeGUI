@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.game.Main">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@play_stylesheet.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.game.Main">
    <children>
-      <BorderPane layoutX="37.0" layoutY="51.0" prefHeight="303.0" prefWidth="489.0">
+      <BorderPane layoutX="55.0" layoutY="42.0" prefHeight="303.0" prefWidth="489.0" stylesheets="@play_stylesheet.css">
+         <top>
+            <Label id="ps-label" alignment="CENTER" text="Tic-Tac-Toe" BorderPane.alignment="CENTER" />
+         </top>
          <center>
-            <Label text="DUDE" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="53.0" />
-               </font></Label>
+            <VBox id="ps-buttons" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button mnemonicParsing="false" text="Local Game" />
+                  <Button mnemonicParsing="false" text="LAN Game" />
+               </children>
+            </VBox>
          </center></BorderPane>
    </children>
 </AnchorPane>

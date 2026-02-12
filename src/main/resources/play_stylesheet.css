@@ -3,21 +3,15 @@
     -fx-border-color: greenyellow;
     -fx-border-width: 10;
 }
-.button{
-    -fx-border-color: greenyellow;
-    -fx-background-color: black;
-    -fx-text-fill:greenyellow;
-    -fx-font-size: 20;
-}
-.button:hover{
-    -fx-border-color: #9effd2
-}
-.button:disabled{
-    -fx-opacity: 1.0;
-}
-.label{
-    -fx-label-padding: 20;
-    -fx-text-alignment: center;
-    -fx-font-size: 30;
+#ps-label{
+    -fx-font-size: 40;
     -fx-text-fill: greenyellow;
 }
+#ps-buttons .button{
+    -fx-pref-width: 200;
+    -fx-pref-height: 10;
+}
+#ps-buttons .button:hover{
+    -fx-border-color: black;
+}
+
