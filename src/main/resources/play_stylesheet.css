@@ -10,6 +10,10 @@
 #ps-buttons .button{
     -fx-pref-width: 200;
     -fx-pref-height: 10;
+    -fx-background-color: black;
+    -fx-border-color: greenyellow;
+    -fx-border-width: 4;
+    -fx-text-fill: white;
 }
 #ps-buttons .button:hover{
     -fx-border-color: black;
