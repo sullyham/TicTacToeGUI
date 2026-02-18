@@ -18,4 +18,10 @@
 #ps-buttons .button:hover{
     -fx-border-color: black;
 }
+#music-toggle{
+    -fx-border-color: greenyellow;
+    -fx-border-width: 4;
+    -fx-background-color: black;
+    -fx-text-fill: #57cfcf;
+}
 
