@@ -15,7 +15,7 @@ public class Main extends Application {
         stage.getIcons().add(new Image("instagram.png"));
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/game.fxml")));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("play.stylesheet.css");
+        scene.getStylesheets().add("play_stylesheet.css");
         stage.setScene(scene);
         stage.setResizable(false);
         //stage.initStyle(StageStyle.UNDECORATED);

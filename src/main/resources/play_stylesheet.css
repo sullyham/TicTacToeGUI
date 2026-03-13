@@ -24,4 +24,13 @@
     -fx-background-color: black;
     -fx-text-fill: #57cfcf;
 }
+#game-grid .button{
+    -fx-pref-width: 200;
+    -fx-pref-height: 200;
+    -fx-background-color: black;
+    -fx-border-color: greenyellow;
+    -fx-border-width: 4;
+    -fx-text-fill: white;
+}
+
 
