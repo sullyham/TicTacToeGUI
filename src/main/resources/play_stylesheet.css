@@ -32,5 +32,14 @@
     -fx-border-width: 4;
     -fx-text-fill: white;
 }
+#game-grid .button:disabled{
+    -fx-opacity: 1;
+}
+#game-grid .button:hover{
+    -fx-border-color: white;
+}
+#game-grid .label{
+    -fx-text-fill: white;
+}
 
 
