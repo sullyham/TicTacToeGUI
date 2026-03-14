@@ -15,6 +15,17 @@ public class TicTacToeCore {
             System.out.println(Arrays.toString(arr));
         }
     }
+    private void checkDiagonals(){
+        char one = getElement(0,0);
+        char five = getElement(1,1);
+        char nine = getElement(2,2);
+        char three = getElement(0,2);
+        char seven = getElement(2,0);
+        char empty = '\u0000';
+        //TODO Clean up TicTacToeCore.java!
+        if(one != empty && one == five && )
+
+    }
     private void checkState(){
         //We got to check from left to right, and from up to down
         // so like [0][0] [0][1] [0][2] |||||| [1][0] [1][1] [1][2] |||||| [2][0] [2][1] [2][2]
@@ -23,14 +34,6 @@ public class TicTacToeCore {
         //so like [0][0] [1][1] [2][2] ||||||| [0][2] [1][1] [2][0]
 
         //Checks both diagonals
-        if(isTie){
-            System.out.println("It's a tie!");
-            return;
-        }
-        if(isWin){
-            System.out.println(getPlayer() + " has won!");
-            return;
-        }
         if(getElement(0,0) != '\u0000' && getElement(0,0) == getElement(1,1) && getElement(1,1) == getElement(2,2)){
 
             isWin = true;
@@ -79,9 +82,6 @@ public class TicTacToeCore {
     }
     //Gets win state of the board
     public boolean getWin(){
-        if(isWin){
-            System.out.println(getPlayer()+ " has won!");
-        }
         return isWin;
     }
     //Gets TieState of the board
@@ -90,23 +90,12 @@ public class TicTacToeCore {
     }
     //Sets the element to the current player
     public void setElement(int row, int column){
-        if(getWin()){
-            System.out.println(getPlayer() + " has already won!");
-        }
-        else if(isTie){
-            System.out.println("There is a tie!");
-        }
-       else if(board[row][column] == '\u0000'){
             board[row][column] = currPlayer;
             checkState();
             if(!isTie && !isWin) {
                 size++;
                 currPlayer = getPlayer();
             }
-        }
-        else{
-            throw new IllegalArgumentException("Space is currently full!!");
-        }
     }
 
     static void main() {
