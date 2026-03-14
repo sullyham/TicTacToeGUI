@@ -22,8 +22,36 @@ public class GameController implements Initializable {
     @FXML
     Label announce;
     List<Button> buttons;
+    private void setTie(){
+        disableallButtons();
+        setLText("It's a tie!");
+    }
 
-
+    private void setWin(){
+        disableallButtons();
+        setLText(core.getPlayer() + " has won!");
+    }
+    private void disableallButtons(){
+        for(Button b: buttons){
+            b.setDisable(true);
+        }
+    }
+    private void setLText(String text){
+        announce.setText(text);
+    }
+    private void setText(Button button, String text){
+        button.setText(text);
+    }
+    private int getX(Button button){
+        //If considered null, then we assign zero, cuz for some reason it is zero
+        //Otherwise we just subtract the index by 1
+        return (GridPane.getRowIndex(button) != null) ? (GridPane.getRowIndex(button) - 1) : 0;
+    }
+    private int getY(Button button){
+        //If considered null, then we assign zero, cuz for some reason it is zero
+        //Otherwise we just subtract the index by 1
+        return (GridPane.getColumnIndex(button) != null) ? (GridPane.getColumnIndex(button)) : 0;
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         core = new TicTacToeCore();
@@ -33,24 +61,19 @@ public class GameController implements Initializable {
 
     public void PlaceElement(ActionEvent e){
         Button button = (Button) e.getSource();
-       int x = (GridPane.getRowIndex(button) != null) ? (GridPane.getRowIndex(button) - 1) : 0;
-       int y = (GridPane.getColumnIndex(button) != null) ? (GridPane.getColumnIndex(button)) : 0;
-       button.setText(String.valueOf(core.getPlayer()));
+       int x = getX(button);
+       int y = getY(button);
+       String currplayer = String.valueOf(core.getPlayer());
+       setText(button,currplayer);
        core.setElement(x,y);
        if(core.getWin()){
-           for(Button b: buttons){
-               b.setDisable(true);
-           }
-           announce.setText(core.getPlayer() + " has won!");
+           setWin();
+       }
+       else if(core.isTie()){
+           setTie();
        }
        else {
-           button.setDisable(true);
-           if(core.getPlayer() == 'X'){
-               announce.setText(px);
-           }
-           else{
-               announce.setText(po);
-           }
+          setLText((currplayer.equals("X")) ? px : po);
        }
     }
 }
