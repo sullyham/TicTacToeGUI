@@ -3,78 +3,52 @@ package com.example.game;
 import java.util.Arrays;
 
 public class TicTacToeCore {
-    private char[][] board; //The board for the game
+    private final char[][] board; //The board for the game
     private boolean isWin; //Checks the game state for a win
-    private boolean isTie; //Checks the game state for a tie
     private int size; //The amount of elements on the board
-    private char X = 'X';
-    private char O = 'O';
     private char currPlayer;
-    public void PrintBoard(){
-        for(char[] arr: board){
-            System.out.println(Arrays.toString(arr));
-        }
-    }
-    private void checkDiagonals(){
-        char one = getElement(0,0);
-        char five = getElement(1,1);
-        char nine = getElement(2,2);
-        char three = getElement(0,2);
-        char seven = getElement(2,0);
-        char empty = '\u0000';
-        //TODO Clean up TicTacToeCore.java!
-        if(one != empty && one == five && )
-
-    }
-    private void checkState(){
-        //We got to check from left to right, and from up to down
-        // so like [0][0] [0][1] [0][2] |||||| [1][0] [1][1] [1][2] |||||| [2][0] [2][1] [2][2]
-        // so like [0][0] [1][0] [2][0] |||||| [0][1] [1][1] [2][1] |||||| [0][2] [1][2] [2][2]
-        // Both diagonals
-        //so like [0][0] [1][1] [2][2] ||||||| [0][2] [1][1] [2][0]
-
-        //Checks both diagonals
-        if(getElement(0,0) != '\u0000' && getElement(0,0) == getElement(1,1) && getElement(1,1) == getElement(2,2)){
-
-            isWin = true;
-            return;
-        }
-        if(getElement(0,2) != '\u0000' && getElement(0,2) == getElement(1,1) && getElement(1,1) == getElement(2,0)){
-            isWin = true;
-            return;
-        }
-        //Checking to the right and down
-        for (int i = 0; i < board.length; i++) {
-            char first = getElement(i, 0);
-            char second = getElement(i, 1);
-            char third = getElement(i, 2);
-            char firstdown = getElement(0, i);
-            char seconddown = getElement(1, i);
-            char thirddown = getElement(2, i);
-            if(first != '\u0000' && first == second && second == third){
-                isWin = true;
-                break;
-            }
-            else if(firstdown != '\u0000' && firstdown == seconddown && seconddown == thirddown){
-                isWin = true;
-                break;
-            }
-        }
-
-    }
     public TicTacToeCore(){
         board = new char[3][3];
         isWin = false;
-        isTie = false;
         size = 0;
         currPlayer = getPlayer();
+    }
+    //Sets the element to the current player
+    public void setElement(int row, int column){
+        board[row][column] = currPlayer;
+        checkState(row, column);
+        if(!isTie() && !isWin) {
+            size++;
+            currPlayer = getPlayer();
+        }
+    }
+    private void checkState(int row, int column){
+        //Checks if the element was placed in an area where diags can exist.
+        boolean isDiag = row == column || row == 0 && column == 2 || row == 2 && column == 0;
+        char empty = '\u0000';
+        //Checks the row
+        if(board[row][column] != empty && board[row][0] == board[row][1] && board[row][0] == board[row][2]){
+            isWin = true;
+        }
+        //Checks the column
+        else if(board[row][column] != empty && board[0][column] == board[1][column] && board[0][column] == board[2][column]){
+            isWin = true;
+        }
+        //Checks the left diag
+        else if(isDiag && board[0][0] != empty && board[0][0] == board[1][1] && board[0][0] == board[2][2]){
+            isWin = true;
+        }
+        //Checks the right diag
+        else if(isDiag && board[0][2] != empty && board[0][2] == board[1][1] && board[0][2] == board[2][0]){
+            isWin = true;
+        }
     }
     //Gets current player based on turn number, even is X, odd is O.
     public char getPlayer(){
         if(size % 2 == 0){
-            return X;
+            return 'X';
         }
-        return O;
+        return 'O';
     }
     //Returns the current element at the board
     public char getElement(int row, int column){
@@ -88,20 +62,4 @@ public class TicTacToeCore {
     public boolean isTie(){
         return size == 9;
     }
-    //Sets the element to the current player
-    public void setElement(int row, int column){
-            board[row][column] = currPlayer;
-            checkState();
-            if(!isTie && !isWin) {
-                size++;
-                currPlayer = getPlayer();
-            }
-    }
-
-    static void main() {
-        TicTacToeCore game = new TicTacToeCore();
-
-
-    }
-
 }
