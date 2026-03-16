@@ -1,7 +1,5 @@
 package com.example.game;
 
-import java.util.Arrays;
-
 public class TicTacToeCore {
     private final char[][] board; //The board for the game
     private boolean isWin; //Checks the game state for a win
@@ -50,10 +48,7 @@ public class TicTacToeCore {
         }
         return 'O';
     }
-    //Returns the current element at the board
-    public char getElement(int row, int column){
-        return board[row][column];
-    }
+
     //Gets win state of the board
     public boolean getWin(){
         return isWin;

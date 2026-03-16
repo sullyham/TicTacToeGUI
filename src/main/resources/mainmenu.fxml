@@ -18,7 +18,7 @@
          <center>
             <VBox id="ps-buttons" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" text="Local Game" />
+                  <Button mnemonicParsing="false" onAction="#play" text="Local Game" />
                   <Button mnemonicParsing="false" text="LAN Game" />
                </children>
             </VBox>

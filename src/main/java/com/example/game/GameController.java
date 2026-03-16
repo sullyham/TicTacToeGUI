@@ -22,7 +22,6 @@ public class GameController implements Initializable {
     Label announce;
     List<Button> buttons;
 
-
     //Initializes the actual game, and adds all buttons to a list.
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -36,24 +35,22 @@ public class GameController implements Initializable {
         Button button = (Button) e.getSource();
         //Places the piece on the button.
         placePiece(button);
-        //Checks whether a win or tie has occured.
+        //Checks whether a win or tie has occurred.
         checkGameState();
     }
     //Sets the tie condition for the game, by disabling all buttons, and changing the top label.
     private void setTie(){
-        disableallButtons();
+        disableButtons();
         setLText("It's a tie!");
     }
     //Sets the win condition for the game, by disabling all buttons, and changing the top label.
     private void setWin(){
-        disableallButtons();
+        disableButtons();
         setLText(core.getPlayer() + " has won!");
     }
     //Disables all the buttons in the GUI.
-    private void disableallButtons(){
-        for(Button b: buttons){
-            b.setDisable(true);
-        }
+    private void disableButtons(){
+        for(Button b: buttons) b.setDisable(true);
     }
     //Changes the text of the top label.
     private void setLText(String text){
