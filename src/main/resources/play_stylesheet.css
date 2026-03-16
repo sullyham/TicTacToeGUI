@@ -3,21 +3,43 @@
     -fx-border-color: greenyellow;
     -fx-border-width: 10;
 }
-.button{
-    -fx-border-color: greenyellow;
-    -fx-background-color: black;
-    -fx-text-fill:greenyellow;
-    -fx-font-size: 20;
-}
-.button:hover{
-    -fx-border-color: #9effd2
-}
-.button:disabled{
-    -fx-opacity: 1.0;
-}
-.label{
-    -fx-label-padding: 20;
-    -fx-text-alignment: center;
-    -fx-font-size: 30;
+#ps-label{
+    -fx-font-size: 40;
     -fx-text-fill: greenyellow;
 }
+#ps-buttons .button{
+    -fx-pref-width: 200;
+    -fx-pref-height: 10;
+    -fx-background-color: black;
+    -fx-border-color: greenyellow;
+    -fx-border-width: 4;
+    -fx-text-fill: white;
+}
+#ps-buttons .button:hover{
+    -fx-border-color: black;
+}
+#music-toggle{
+    -fx-border-color: greenyellow;
+    -fx-border-width: 4;
+    -fx-background-color: black;
+    -fx-text-fill: #57cfcf;
+}
+#game-grid .button{
+    -fx-pref-width: 200;
+    -fx-pref-height: 200;
+    -fx-background-color: black;
+    -fx-border-color: greenyellow;
+    -fx-border-width: 4;
+    -fx-text-fill: white;
+}
+#game-grid .button:disabled{
+    -fx-opacity: 1;
+}
+#game-grid .button:hover{
+    -fx-border-color: white;
+}
+#game-grid .label{
+    -fx-text-fill: white;
+}
+
+
