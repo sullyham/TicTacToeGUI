@@ -64,7 +64,7 @@ public class GameController implements Initializable {
     private int getX(Button button){
         //If considered null, then we assign zero, cuz for some reason it is zero
         //Otherwise we just subtract the index by 1
-        return (GridPane.getRowIndex(button) != null) ? (GridPane.getRowIndex(button) - 1) : 0;
+        return (GridPane.getRowIndex(button) != null) ? (GridPane.getRowIndex(button)) : 0;
     }
     //Gets the column index for a button.
     private int getY(Button button){

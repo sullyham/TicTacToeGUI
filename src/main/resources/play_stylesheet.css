@@ -24,14 +24,19 @@
     -fx-background-color: black;
     -fx-text-fill: #57cfcf;
 }
+#game-grid .button#ignore{
+    fx-border-color:red;
+    -fx-border-width: 2;
+}
 #game-grid .button{
-    -fx-pref-width: 200;
+    -fx-pref-width: 220;
     -fx-pref-height: 200;
     -fx-background-color: black;
     -fx-border-color: greenyellow;
-    -fx-border-width: 4;
+    -fx-border-width: 1;
     -fx-text-fill: white;
 }
+
 #game-grid .button:disabled{
     -fx-opacity: 1;
 }
