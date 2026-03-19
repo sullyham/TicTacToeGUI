@@ -12,8 +12,8 @@ import java.util.Objects;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        stage.getIcons().add(new Image("instagram.png"));
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/mainmenu.fxml")));
+        stage.getIcons().add(new Image("img.png"));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/FXML Files/mainmenu.fxml")));
         Scene scene = new Scene(root);
         scene.getStylesheets().add("play_stylesheet.css");
         stage.setScene(scene);

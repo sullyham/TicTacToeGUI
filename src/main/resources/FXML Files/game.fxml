@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane id="game-grid" stylesheets="@play_stylesheet.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.game.GameController">
+<BorderPane id="game-grid" stylesheets="@../play_stylesheet.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.game.GameController">
    <center>
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="625.0">
         <columnConstraints>
@@ -30,7 +30,7 @@
             <Button id="ignore" fx:id="two" mnemonicParsing="false" onAction="#PlaceElement" prefHeight="145.0" prefWidth="230.0" GridPane.columnIndex="1" />
             <Button id="ignore" fx:id="six" mnemonicParsing="false" onAction="#PlaceElement" prefHeight="145.0" prefWidth="230.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Button fx:id="seven" mnemonicParsing="false" onAction="#PlaceElement" prefHeight="145.0" prefWidth="230.0" GridPane.rowIndex="2" />
-            <Button id="ignore" fx:id="one" graphicTextGap="0.0" mnemonicParsing="false" onAction="#PlaceElement" prefHeight="138.0" prefWidth="209.0" stylesheets="@play_stylesheet.css" textAlignment="CENTER" />
+            <Button id="ignore" fx:id="one" graphicTextGap="0.0" mnemonicParsing="false" onAction="#PlaceElement" prefHeight="138.0" prefWidth="209.0" stylesheets="@../play_stylesheet.css" textAlignment="CENTER" />
          </children>
       </GridPane>
    </center>

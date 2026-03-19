@@ -2,17 +2,27 @@ package com.example.game;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.media.AudioClip;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
+    Stage stage;
+    AudioClip place;
     TicTacToeCore core;
     @FXML
     Button one,two,three,four,five,six,seven,eight,nine;
@@ -20,21 +30,27 @@ public class GameController implements Initializable {
     String po = "O's turn!";
     @FXML
     Label announce;
+    @FXML
+    Label winner;
+
     List<Button> buttons;
 
     //Initializes the actual game, and adds all buttons to a list.
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        place = new AudioClip((Objects.requireNonNull(getClass().getResource("/Sound Effect/place-player.mp3")).toExternalForm()));
         core = new TicTacToeCore();
         announce.setText(px);
         buttons = Arrays.asList(one,two,three,four,five,six,seven,eight,nine);
     }
     //This method places the player's current piece, at the desired place on the board.
-    public void PlaceElement(ActionEvent e){
+    public void PlaceElement(ActionEvent e) throws IOException {
         //Getting the actual button, so we can modify it.
         Button button = (Button) e.getSource();
+        stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         //Places the piece on the button.
         placePiece(button);
+        place.play();
         //Checks whether a win or tie has occurred.
         checkGameState();
     }
@@ -43,9 +59,22 @@ public class GameController implements Initializable {
         disableButtons();
         setLText("It's a tie!");
     }
+    public void doSomething() throws IOException {
+       Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/FXML Files/winner.fxml")));
+
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("play_stylesheet.css");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        winner.setText(core.getPlayer() + " has won!");
+    }
+
     //Sets the win condition for the game, by disabling all buttons, and changing the top label.
-    private void setWin(){
+    private void setWin() throws IOException {
         disableButtons();
+        doSomething();
+        System.out.println("wewe");
         setLText(core.getPlayer() + " has won!");
     }
     //Disables all the buttons in the GUI.
@@ -73,7 +102,7 @@ public class GameController implements Initializable {
         return (GridPane.getColumnIndex(button) != null) ? (GridPane.getColumnIndex(button)) : 0;
     }
     //This method checks the current game state, and updates the GUI based on that.
-    private void checkGameState(){
+    private void checkGameState() throws IOException {
         String currplayer = String.valueOf(core.getPlayer());
         if(core.getWin()){
             setWin();

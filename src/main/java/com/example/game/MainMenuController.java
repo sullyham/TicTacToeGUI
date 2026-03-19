@@ -33,8 +33,9 @@ public class MainMenuController implements Initializable {
 
     public void play(ActionEvent e) throws IOException {
         music.stop();
-        setMusic(new Media(Objects.requireNonNull(getClass().getResource("/arcade.mp3")).toExternalForm()));
-        root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/game.fxml")));
+        setMusic(new Media(Objects.requireNonNull(getClass().getResource("/Music/game-music.mp3")).toExternalForm()));
+        music.setVolume(0.2);
+        root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/FXML Files/game.fxml")));
         stage = (Stage)((Node)e.getSource()).getScene().getWindow();
         scene = new Scene(root);
         scene.getStylesheets().add("play_stylesheet.css");
@@ -54,12 +55,13 @@ public class MainMenuController implements Initializable {
     public void setMusic(Media media){
         music = new MediaPlayer(media);
         music.setCycleCount(MediaPlayer.INDEFINITE);
+
         music.play();
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         toggleButton.setText("Mute Music");
-        setMusic(new Media(Objects.requireNonNull(getClass().getResource("/Alive.mp3")).toExternalForm()));
+        setMusic(new Media(Objects.requireNonNull(getClass().getResource("/Music/menu-music.mp3")).toExternalForm()));
         setRotate();
     }
     public void ToggleMusic(){

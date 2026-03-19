@@ -29,6 +29,7 @@
     -fx-border-width: 2;
 }
 #game-grid .button{
+    -fx-font-size: 40;
     -fx-pref-width: 220;
     -fx-pref-height: 200;
     -fx-background-color: black;
@@ -44,6 +45,10 @@
     -fx-border-color: white;
 }
 #game-grid .label{
+    -fx-text-fill: white;
+}
+#win-screen .label{
+    -fx-font-size: 20;
     -fx-text-fill: white;
 }
 
