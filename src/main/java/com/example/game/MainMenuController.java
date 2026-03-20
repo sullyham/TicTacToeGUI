@@ -26,7 +26,7 @@ public class MainMenuController implements Initializable {
     private Label mylabel;
     @FXML
     private ToggleButton toggleButton;
-    private MediaPlayer music;
+     static MediaPlayer music;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -52,10 +52,9 @@ public class MainMenuController implements Initializable {
         rotate.setInterpolator(Interpolator.LINEAR);
         rotate.play();
     }
-    public void setMusic(Media media){
+    public static void setMusic(Media media){
         music = new MediaPlayer(media);
         music.setCycleCount(MediaPlayer.INDEFINITE);
-
         music.play();
     }
     @Override

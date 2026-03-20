@@ -9,8 +9,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -31,17 +34,19 @@ public class GameController implements Initializable {
     @FXML
     Label announce;
     @FXML
-    Label winner;
-
+    BorderPane bpane;
     List<Button> buttons;
 
     //Initializes the actual game, and adds all buttons to a list.
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        place = new AudioClip((Objects.requireNonNull(getClass().getResource("/Sound Effect/place-player.mp3")).toExternalForm()));
-        core = new TicTacToeCore();
-        announce.setText(px);
-        buttons = Arrays.asList(one,two,three,four,five,six,seven,eight,nine);
+        if (location.toString().endsWith("game.fxml")) {
+            System.out.println(location.toString());
+            place = new AudioClip((Objects.requireNonNull(getClass().getResource("/Sound Effect/place-player.mp3")).toExternalForm()));
+            core = new TicTacToeCore();
+            announce.setText(px);
+            buttons = Arrays.asList(one,two,three,four,five,six,seven,eight,nine);
+        }
     }
     //This method places the player's current piece, at the desired place on the board.
     public void PlaceElement(ActionEvent e) throws IOException {
@@ -59,23 +64,20 @@ public class GameController implements Initializable {
         disableButtons();
         setLText("It's a tie!");
     }
-    public void doSomething() throws IOException {
-       Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/FXML Files/winner.fxml")));
-
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add("play_stylesheet.css");
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-        winner.setText(core.getPlayer() + " has won!");
+    private void dosomething() throws IOException {
+        announce.setText("");
+        MainMenuController.music.stop();
+        MainMenuController.setMusic(new Media(Objects.requireNonNull(getClass().getResource("/Sound Effect/winner-sound.mp3")).toExternalForm()));
+        Label win = new Label(core.getPlayer() + " has won!!!");
+        win.setStyle("-fx-font-size: 60;");
+        bpane.setCenter(win);
     }
 
     //Sets the win condition for the game, by disabling all buttons, and changing the top label.
     private void setWin() throws IOException {
         disableButtons();
-        doSomething();
         System.out.println("wewe");
-        setLText(core.getPlayer() + " has won!");
+        dosomething();
     }
     //Disables all the buttons in the GUI.
     private void disableButtons(){
