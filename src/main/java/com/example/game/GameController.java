@@ -1,6 +1,7 @@
 package com.example.game;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -71,12 +72,28 @@ public class GameController implements Initializable {
         Label win = new Label(core.getPlayer() + " has won!!!");
         win.setStyle("-fx-font-size: 60;");
         bpane.setCenter(win);
+        Button test = new Button("test");
+        bpane.setBottom(test);
+        test.setOnAction(event -> {
+            try {
+                swapScene();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+    private void swapScene() throws IOException {
+        MainMenuController.music.stop();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("/FXML Files/mainmenu.fxml")));
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("play_stylesheet.css");
+        stage.setScene(scene);
+        stage.setResizable(false);
     }
 
     //Sets the win condition for the game, by disabling all buttons, and changing the top label.
     private void setWin() throws IOException {
         disableButtons();
-        System.out.println("wewe");
         dosomething();
     }
     //Disables all the buttons in the GUI.
